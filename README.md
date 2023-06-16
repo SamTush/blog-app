@@ -37,7 +37,7 @@
 <details>
   <summary>Ruby On Rails</summary>
   <ul>
-    <li><a href="https://rubyrails.org/">Ruby On Rails</a></li>
+    <li><a href="https://rubyonrails.org">Ruby On Rails</a></li>
   </ul>
 </details>
 
