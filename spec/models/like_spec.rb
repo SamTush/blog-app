@@ -7,6 +7,6 @@ RSpec.describe Like, type: :model do
   end
 
   describe 'methods' do
-    let!(:like1) { create(:like, post: post) }
+    let!(:like1) { create(:like, post:) }
   end
 end
