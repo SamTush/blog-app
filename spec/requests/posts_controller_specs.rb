@@ -24,7 +24,6 @@ RSpec.describe 'Posts', type: :request do
     let(:user) { User.create(name: 'Stella', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Rusia.', posts_counter: 0) }
     let(:post) do
       Post.create(author: user, title: 'Sample Post', text: 'My first post', comments_counter: 0, likes_counter: 0)
-      # Post.create(author: user, title: 'Hello4', text: 'This is my fourth post')
     end
 
     it 'returns a success response' do
