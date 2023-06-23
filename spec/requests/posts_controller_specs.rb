@@ -1,21 +1,45 @@
-RSpec.describe PostsController, type: :controller do
-  describe "GET #index" do
-    it "returns a successful response" do
-      get :index
-      expect(response).to have_http_status(200)
+require 'rails_helper'
+
+RSpec.describe 'Posts', type: :request do
+  describe 'GET /users/:user_id/posts' do
+    let(:user) { User.create(name: 'Stella', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Russia.', posts_counter: 0) }
+
+    it 'returns a success response' do
+      get user_posts_path(user)
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'renders the index template' do
+      get user_posts_path(user)
       expect(response).to render_template(:index)
-      expect(response.body).to include("Posts Index") # Replace with correct placeholder text
+    end
+
+    it 'includes correct placeholder text in the response body' do
+      get user_posts_path(user)
+      expect(response.body).to include('Here is a list of posts for a given user')
     end
   end
 
-  describe "GET #show" do
-    let(:post) { create(:post) }
+  describe 'GET /users/:user_id/posts/:id' do
+    let(:user) { User.create(name: 'Stella', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Rusia.', posts_counter: 0) }
+    let(:post) do
+      Post.create(author: user, title: 'Sample Post', text: 'My first post', comments_counter: 0, likes_counter: 0)
+      # Post.create(author: user, title: 'Hello4', text: 'This is my fourth post')
+    end
 
-    it "returns a successful response" do
-      get :show, params: { id: post.id }
-      expect(response).to have_http_status(200)
+    it 'returns a success response' do
+      get user_post_path(user, post)
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'renders the show template' do
+      get user_post_path(user, post.id)
       expect(response).to render_template(:show)
-      expect(response.body).to include("Post Details") # Replace with correct placeholder text
+    end
+
+    it 'includes correct placeholder text in the response body' do
+      get user_post_path(user, post.id)
+      expect(response.body).to include('Here is a given post for a specific user')
     end
   end
 end
