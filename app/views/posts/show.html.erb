@@ -13,10 +13,10 @@
     </div>
     </div>
     <%# End of Home, Users and Back buttons  %>
-    <div class="single-post-container container">
+    <div class="single-post-container">
       <%# user post start %>
       <article class="post-article">
-        <div class="info d-flex justify-content-between" style="width: 100%;">
+        <div class="info">
           <div>
             <h2 class="title"><%= @post.title %></h2>
             <p class="user-name">by <%= @user.name %></p>
@@ -30,7 +30,7 @@
         </article>
         <%# End of user post %>
         <%# Comments container start %>
-        <ul class="comments-container mt-4">
+        <ul class="comments-container">
           <% if @comments.any?  %>
             <% @comments.each do |comment| %>
               <li>
