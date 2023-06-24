@@ -1,10 +1,46 @@
-<p style="color: green"><%= notice %></p>
+<main id="post-index" class="page">
+  <%# Home, Users and Back buttons start %>
+  <div id="user-page">
+    <div class="btn-container">
+      <%= link_to "Home", "../../" %>
 
-<%= render @post %>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
-
-  <%= button_to "Destroy this post", @post, method: :delete %>
-</div>
+      <div class="back-link-container">
+        <%= link_to "Back", :back, class: "back-link" %>
+      </div>
+          <div class="users-link-container">
+      <%= link_to "Users", users_path, class: "users-link" %>
+    </div>
+    </div>
+    <%# End of Home, Users and Back buttons  %>
+    <div class="single-post-container">
+      <%# user post start %>
+      <article class="post-article">
+        <div class="info">
+          <div>
+            <h2 class="title"><%= @post.title %></h2>
+            <p class="user-name">by <%= @user.name %></p>
+          </div>
+          <p class="posts-counter">
+            Comment: <%= @post.comment_counter || 0 %>, Likes: <%= @post.likes_counter || 0 %>
+          </div>
+          <div class="post-body">
+            <p><%= @post.text %></p>
+          </div>
+        </article>
+        <%# End of user post %>
+        <%# Comments container start %>
+        <ul class="comments-container">
+          <% if @comments.any?  %>
+            <% @comments.each do |comment| %>
+              <li>
+                <p><%= User.find_by(id: comment.user_id).name %>: <%= comment.text %></p>
+              </li>
+            <% end %>
+          <% else %>
+            <li>No comments added yet...</li>
+          <% end %>
+        </ul>
+        <%# End of Comments container  %>
+      </div>
+    </main>
