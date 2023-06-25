@@ -4,13 +4,13 @@
     <div class="btn-container">
       <%= link_to "Home", "../../" %>
 
-
       <div class="back-link-container">
         <%= link_to "Back", :back, class: "back-link" %>
       </div>
-          <div class="users-link-container">
-      <%= link_to "Users", users_path, class: "users-link" %>
-    </div>
+
+      <div class="users-link-container">
+        <%= link_to "Users", users_path, class: "users-link" %>
+      </div>
     </div>
     <%# End of Home, Users and Back buttons  %>
     <div class="single-post-container">
@@ -43,4 +43,64 @@
         </ul>
         <%# End of Comments container  %>
       </div>
-    </main>
+    </article>
+    <%# End of User post %>
+
+    <%# Comments container start %>
+    <ul class="comments-container">
+      <% if @comments.any? %>
+        <% @comments.each do |comment| %>
+          <li>
+            <p><%= User.find_by(id: comment.user_id).name %>: <%= comment.text %></p>
+          </li>
+        <% end %>
+      <% else %>
+        <li>No comments added yet...</li>
+      <% end %>
+    </ul>
+    <%# End of Comments container %>
+
+    <%# Create Post form %>
+    <div class="form-container">
+      <h3>Create Post</h3>
+      <%= form_with(model: @post, url: user_posts_path(@user)) do |form| %>
+        <div class="field">
+          <%= form.label :title %>
+          <%= form.text_field :title, placeholder: "Enter post title" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :text %>
+          <%= form.text_area :text, placeholder: "Enter post text" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit "Create Post" %>
+        </div>
+      <% end %>
+    </div>
+    <%# End of Create Post form %>
+
+    <%# Create Comment form %>
+    <div class="form-container">
+      <h3>Add Comment</h3>
+      <%= form_with(model: @comment, url: post_comments_path(@post)) do |form| %>
+        <div class="field">
+          <%= form.label :text %>
+          <%= form.text_area :text, placeholder: "Enter comment text" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit "Add Comment" %>
+        </div>
+      <% end %>
+    </div>
+    <%# End of Create Comment form %>
+
+    <%# Add Like button %>
+    <div class="like-button-container">
+      <%= button_to "Like", like_post_path(@post), method: :post, class: "like-button" %>
+    </div>
+    <%# End of Like button %>
+  </div>
+</main>
