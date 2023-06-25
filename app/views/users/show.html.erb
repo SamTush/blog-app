@@ -32,6 +32,24 @@
     <div class="btn-container see-posts">
       <%= link_to "See all posts", user_posts_path(@user) %>
     </div>
-    <%# end of see all button %>
   </div>
+</main>
+  <article class="user-bio">
+    <h3>Bio</h3>
+    <div class="bio"><%= @user.bio %></div>
+  </article>
+
+<%# posts start %>
+<article>
+  <% @posts.each do |post| %>
+    <%= render partial: "post", locals: { user: @user, post: post } %>
+  <% end %>
+</article>
+<%# end of post %>
+
+  <%# see all post button %>
+  <div class="btn-container see-posts">
+    <%= link_to "See all posts", user_posts_path(@user) %>
+  </div>
+  <%# end of see all button %>
 </main>
