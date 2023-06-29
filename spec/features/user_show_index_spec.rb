@@ -1,8 +1,6 @@
 require 'rails_helper'
 require 'capybara/rspec'
 
-=begin
-
 RSpec.describe 'User show page', type: :feature do
   let(:user) { create(:user) }
 
@@ -32,5 +30,3 @@ RSpec.describe 'User show page', type: :feature do
     expect(page).to have_link('Create post', href: new_user_post_path(user))
   end
 end
-
-=end
