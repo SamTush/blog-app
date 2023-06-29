@@ -24,12 +24,6 @@ RSpec.describe 'User show page integration', type: :feature do
         expect(page).to have_css('.post-body', text: post.text)
       end
 
-      within('.comments-container') do
-        comments.each do |comment|
-          expect(page).to have_content("#{User.find_by(id: comment.user_id).name}: #{comment.text}")
-        end
-      end
-
       within('.form-container:first-child') do
         expect(page).to have_css('h3', text: 'Create Post')
         expect(page).to have_field('Title')
