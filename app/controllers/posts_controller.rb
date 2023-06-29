@@ -1,9 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
-    user_id = params[:user_id]
-    @posts = Post.where(user_id:)
-    @comments = Comment.all
+    @user = User.includes(posts: :comments).find(params[:user_id])
+    @posts = @user.posts
   end
 
   def new
@@ -12,8 +10,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(title: post_params[:title], text: post_params[:text], user_id: current_user[:id],
-                     comment_counter: 0, likes_counter: 0)
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    @post.comment_counter = 0
+    @post.likes_counter = 0
 
     if @post.save
       redirect_to user_post_path(current_user, @post), notice: 'Post created successfully.'
@@ -23,9 +23,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    @user = User.find(params[:user_id])
-    @comments = Comment.where(post_id: params[:id])
+    @post = Post.includes(:user, comments: :user).find(params[:id])
+    @user = @post.user
+    @comments = @post.comments
   end
 
   private
