@@ -3,8 +3,8 @@ require 'capybara/rspec'
 
 RSpec.describe 'User post show page', type: :feature do
   let!(:user) { create(:user) }
-  let!(:post) { create(:post, user: user) }
-  let!(:comments) { create_list(:comment, 3, post: post) }
+  let!(:post) { create(:post, user:) }
+  let!(:comments) { create_list(:comment, 3, post:) }
 
   before do
     visit user_post_path(user, post)

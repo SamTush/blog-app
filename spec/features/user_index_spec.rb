@@ -7,7 +7,7 @@ RSpec.describe 'User index page', type: :feature do
     @users = FactoryBot.create_list(:user, 2)
   end
 
-  it "displays the name, profile picture, and number of posts for each user" do
+  it 'displays the name, profile picture, and number of posts for each user' do
     visit users_path
 
     @users.each do |user|

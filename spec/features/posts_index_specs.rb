@@ -3,7 +3,7 @@ require 'capybara/rspec'
 
 RSpec.describe 'Post index page', type: :feature do
   let!(:user) { create(:user) }
-  let!(:post) { create(:post, user: user) }
+  let!(:post) { create(:post, user:) }
 
   before do
     visit posts_path
