@@ -96,6 +96,13 @@ To run tests, run the following command:
 
 - GitHub: [@githubhandle](https://github.com/SamTush)
 
+👤 **Alexander Ssenyondo**
+
+- GitHub: [@alexiscyber14](https://github.com/alexiscyber14)
+- Instagram:[@Alexiscyber14](https://www.instagram.com/alexiscyber14/)
+- LinkedIn:[@Alex_Ssenyoondo](https://www.linkedin.com/in/alex-software/)
+- wellfound:[@alexiscyber14](https://angel.co/u/alexander-senyondo)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
